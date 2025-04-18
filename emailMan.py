@@ -295,6 +295,27 @@ class EmailManager:
                 
                 # Ask for user action
                 while True:
+                    breakNow = False
+                    for banned in ['dccc.org', 'info@', 'ncdp.org','team@e.summerforpa.com', 'defeatextremists.org','brady@bradyunited.org', 'notifications@mastodon.online', 'GabNews@mailer.gab.com','no-reply@givebloodtoday', 'macys.com', 'points-mail.com', 'zennioptical','substack.com', 'opencve.io', 'southwest.com','singaporeair.com','noreply@discord.com','choicehotels.com','expedia.com','carvana.com','duke.edu','linkedin.com', 'kamalaharris.com', 'hello@','jetblue.com','nipponkodo@nipponkodostore.com']: 
+                        if banned in from_header:
+                            print("Deleting banned", banned)
+                            breakNow = True
+                            action = 'y'
+                            break
+                    for banned in ['chris@austin-lane.net']:
+                        if banned in to_header:
+                            print("Deleting banned", banned)
+                            breakNow = True
+                            action = 'y'
+                            break
+                    for banned in ['actblue']:
+                        if banned in preview:
+                            print("Deleting banned", banned)
+                            breakNow = True
+                            action = 'y'
+                            break
+                    if breakNow:
+                        break
                     action = input("\nDelete this message? (y/n/q to quit): ").lower()
                     if action in ('y', 'n', 'q', ''):
                         break
